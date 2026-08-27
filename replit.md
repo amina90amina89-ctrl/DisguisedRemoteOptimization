@@ -1,6 +1,7 @@
-# [Project name]
+# Xevora System
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+أساس بوت Discord عربي قابل للتوسعة، يبدأ بأمر `/ping` واتصال مستقر مع معالجة
+الأخطاء والإيقاف الآمن.
 
 ## Run & Operate
 
@@ -22,23 +23,32 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/api-server/bot/index.js` — نقطة تشغيل بوت Discord.
+- `artifacts/api-server/bot/commands/` — الأوامر وموزعها.
+- `artifacts/api-server/src/index.ts` — تشغيل خدمة الصحة والبوت والإيقاف الآمن.
+- `artifacts/api-server/.env.example` — أسماء متغيرات البيئة المطلوبة دون أسرار.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- يستخدم البوت أقل صلاحيات Gateway المطلوبة (`Guilds`) لتقليل سطح الوصول.
+- تُجمع الأوامر في مجلد مستقل حتى يمكن إضافة أنظمة مستقبلية دون تضخيم نقطة التشغيل.
+- يُقرأ التوكن من `DISCORD_TOKEN` فقط، ولا توجد قيمة افتراضية أو قيمة صلبة داخل المصدر.
+- يعمل خادم الصحة والبوت في نفس العملية لتوافق التشغيل مع خدمة 24/7 ومراقبة جاهزية الخدمة.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Xevora System هو بوت Discord عربي؛ الأساس الحالي يثبت الاتصال، يسجل أمر `/ping`
+ويرد بالعربية، مع ترك الأنظمة الأخرى لمرحلة لاحقة.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- يجب أن تكون رسائل البوت وسجلاته ونصوصه العربية افتراضيًا، مع السماح بالأسماء التقنية الضرورية.
+- لا تُنشأ واجهة ويب أو HTML أو CSS أو React لهذا المنتج.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- يجب توفير `DISCORD_TOKEN` كسر بيئي قبل اتصال البوت؛ لا يُحفظ التوكن في الملفات.
+- تسجيل الأوامر حاليًا عام على مستوى التطبيق، وقد يحتاج Discord بعض الوقت لإظهاره في كل الخوادم.
 
 ## Pointers
 
